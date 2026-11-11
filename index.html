@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status Ledger for Jira: documentation</title>
+<link rel="icon" href="logo-144.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><img src="logo-144.png" alt="" width="48" height="48"><h1>Status Ledger: Time in Status for Jira</h1></header>
+<p>Status Ledger shows how long Jira issues spent in each status, in calendar time or in working
+hours, and exports the table to CSV. It runs entirely inside Jira Cloud (Forge, Runs on Atlassian):
+no external server, no data stored outside your site.</p>
+<nav><a href="#start">Get started</a> · <a href="#report">Report</a> · <a href="#panel">Issue panel</a> · <a href="#schedule">Working schedule</a> · <a href="#csv">CSV</a> · <a href="#faq">FAQ</a> · <a href="privacy.html">Privacy</a> · <a href="#support">Support</a></nav>
+
+<h2 id="start">Get started</h2>
+<ol>
+<li>A Jira admin installs Status Ledger from the Atlassian Marketplace.</li>
+<li>Open any project and choose <b>Status Ledger</b> in the project sidebar (or <b>Apps → Status Ledger</b> in the top bar for a cross-project report).</li>
+<li>The report runs at once for the issues updated in the last 90 days of that project. Change the JQL and press <b>Run report</b> to ask for anything else.</li>
+</ol>
+
+<h2 id="report">The report</h2>
+<p>One row per issue, one column per status, in the order the statuses first appear in the issues'
+history. Each cell is the total time the issue spent in that status, adding up every visit (an
+issue sent back from Review to In Progress counts both stretches of In Progress). The last row is
+the average among the issues that entered the status.</p>
+<ul>
+<li><b>Issues:</b> up to 100, 250, 500 or 1000 per run. If the query returns more, the report says so.</li>
+<li><b>Time:</b> working hours (default) or calendar time (24/7).</li>
+<li><b>Show:</b> compact (<code>2d 4h</code>, where a day is one working day in working-hours mode), hours, or days.</li>
+<li><b>Cycle time:</b> pick a start status and an end status to add a column with the time from the first entry into the start status to the last entry into the end status (In Progress → Done is the classic cycle time; the first status → Done is lead time).</li>
+</ul>
+<p>The report reads issues as you. It only shows issues you can already see in Jira.</p>
+
+<h2 id="panel">Issue panel</h2>
+<p>On any issue, open the <b>Time in status</b> panel on the right. It lists every status the issue
+went through with calendar time, working time and the number of visits, and marks the current status.</p>
+
+<h2 id="schedule">Working schedule</h2>
+<p>Open <b>Working schedule</b> in the report to set the working days, the start and end of the
+day, the time zone (default: your Jira profile time zone) and holidays (<code>YYYY-MM-DD</code>,
+separated by commas). Daylight saving changes are handled by the time zone. The schedule is saved in
+your browser and used by the report and the issue panel.</p>
+
+<h2 id="csv">CSV export</h2>
+<p><b>Export CSV</b> downloads the table with times in hours (working hours or calendar hours, as
+shown in the header). Choose <b>semicolon</b> if your Excel uses a comma as the decimal mark
+(Brazil, most of Europe); the file then uses <code>;</code> between columns and <code>,</code> for
+decimals. <b>Copy CSV</b> puts the same text on the clipboard. Cells that start with
+<code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are prefixed with an apostrophe so
+a spreadsheet never runs them as formulas.</p>
+
+<h2 id="faq">FAQ</h2>
+<dl>
+<dt>Where does the data come from?</dt>
+<dd>From the issue history (changelog) of each issue, read through the Jira REST API when you open the report. Nothing is copied or cached.</dd>
+<dt>Why is the first status of an old issue missing?</dt>
+<dd>If an issue was imported with its history cut, the first recorded change is the start. Time before the first change is counted in the status the change left from.</dd>
+<dt>Does it work with team-managed and company-managed projects?</dt>
+<dd>Yes. Statuses are read by name, so two workflows with a status called "Done" share one column.</dd>
+<dt>Is my data sent anywhere?</dt>
+<dd>No. See the <a href="privacy.html">privacy policy</a>.</dd>
+</dl>
+
+<h2 id="support">Support</h2>
+<p>Email <a href="mailto:thiago@thiagofinance.work.gd">thiago@thiagofinance.work.gd</a>. We answer within 2 business days (UTC−3).
+Please include your Jira site URL, what you expected and what you saw; never send passwords or API tokens.</p>
+</main>
+</body>
+</html>
